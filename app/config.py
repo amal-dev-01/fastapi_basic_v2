@@ -1,0 +1,9 @@
+
+
+# DATABASE
+DATABASE_URL = "sqlite:///./auth.db"
+
+# JWT
+SECRET_KEY ="mysecretkey123"
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 60
