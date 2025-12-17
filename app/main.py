@@ -8,25 +8,33 @@ from app.crud import get_user_by_username, create_user, create_item, delete_item
 from app.security import verify_password
 from app.auth import create_access_token, get_current_user, require_admin
 
-app = FastAPI()
+# app = FastAPI()
 
 # Create tables
 Base.metadata.create_all(bind=engine)
 
 from fastapi.staticfiles import StaticFiles
 # uvicorn app.main:app --reload
-app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
+# app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
 
+import os
+
+app = FastAPI()
+
+UPLOAD_DIR = "uploads"
+
+# Ensure directory exists
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
 
 # from fastapi.middleware.cors import CORSMiddleware
 # from fastapi.requests import Request
 
-# origins = [
-#     "http://localhost:3000",   # React
-#     "http://127.0.0.1:3000",
-#     "*", 
-# ]
+origins = [
+    "*"
+]
 
 # app.add_middleware(
 #     CORSMiddleware,
