@@ -121,6 +121,9 @@ async def full_middleware(request: Request, call_next):
 
 
 
+@app.get("/")
+def home():
+    return f"hello"
 
 @app.post("/register", response_model=UserOut)
 def register(user: UserCreate, db: Session = Depends(get_db)):
